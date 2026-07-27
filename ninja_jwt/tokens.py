@@ -183,7 +183,7 @@ class Token:
             raise TokenError(format_lazy(_("Token '{}' claim has expired"), claim))
 
     @classmethod
-    def for_user(cls: T, user: AbstractBaseUser) -> T:
+    def for_user(cls: type[T], user: AbstractBaseUser) -> T:
         """
         Returns an authorization token for the given user that will be provided
         after authenticating the user's credentials.
@@ -255,7 +255,7 @@ class BlacklistMixin:
             return BlacklistedToken.objects.get_or_create(token=token)
 
         @classmethod
-        def for_user(cls: T, user: "AbstractBaseUser") -> T:
+        def for_user(cls: type[T], user: "AbstractBaseUser") -> T:
             """
             Adds this token to the outstanding token list.
             """
